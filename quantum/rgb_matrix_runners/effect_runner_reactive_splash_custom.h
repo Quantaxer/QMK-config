@@ -32,12 +32,12 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         uint8_t dist = sqrt16(dx * dx + dy * dy);
        
         hsv2.h = hsv2.h - (dist / 2);
-        /*if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
-            time = time * -1;
+        if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
+            hsv2.h = hsv2.h - 1;
         }
         else if (hsv2.h < rgb_matrix_config.hsv.h) {
-            time = time * -1;
-        }*/
+            hsv2.h = hsv2.h + 1;
+        }
         RGB rgb = hsv_to_rgb(effect_func(hsv2, 0));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
