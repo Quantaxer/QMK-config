@@ -31,7 +31,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
         uint8_t dist = sqrt16(dx * dx + dy * dy);
        
-        hsv2.h = hsv2.h - (6 * dist);
+        hsv2.h = hsv2.h - (dist / 6);
         /*if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
             time = time * -1;
         }
