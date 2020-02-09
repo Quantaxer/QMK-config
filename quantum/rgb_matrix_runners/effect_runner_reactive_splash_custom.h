@@ -31,7 +31,14 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
         int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
         uint8_t dist = sqrt16(dx * dx + dy * dy);
-        hsv2.h = 3 * dist / 2 + time;
+       
+        hsv2.h = 3 * dist / 2 - time;
+        if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
+            time = time * -1;
+        }
+        else if (hsv2.h < rgb_matrix_config.hsv.h) {
+            time = time * -1;
+        }
         RGB rgb = hsv_to_rgb(effect_func(hsv2, 0));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
