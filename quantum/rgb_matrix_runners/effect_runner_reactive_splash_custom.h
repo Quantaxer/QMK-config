@@ -21,6 +21,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     }
     if (tick != max_tick) {
         uint16_t  offset = scale16by8(tick, rgb_matrix_config.speed);
+        rgb_matrix_config.hsv.s = 0;
         RGB rgb = hsv_to_rgb(effect_func(rgb_matrix_config.hsv, offset));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
