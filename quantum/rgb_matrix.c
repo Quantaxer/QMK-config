@@ -39,6 +39,7 @@
 #include "rgb_matrix_runners/effect_runner_sin_cos_i.h"
 #include "rgb_matrix_runners/effect_runner_reactive.h"
 #include "rgb_matrix_runners/effect_runner_reactive_splash.h"
+#include "rgb_matrix_runners/effect_runner_reactive_splash_custom.h"
 
 // ------------------------------------------
 // -----Begin rgb effect includes macros-----
