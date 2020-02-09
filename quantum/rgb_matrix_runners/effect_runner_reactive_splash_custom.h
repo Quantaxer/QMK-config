@@ -24,6 +24,8 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
     else {
+        HSV hsv2 = rgb_matrix_config.hsv;
+        hsv2.h += 50;
         RGB rgb = hsv_to_rgb(effect_func(rgb_matrix_config.hsv, 0));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
