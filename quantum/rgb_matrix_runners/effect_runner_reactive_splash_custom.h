@@ -13,7 +13,7 @@ bool effect_runner_reactive_custom(uint8_t start, effect_params_t* params, react
     HSV hsv = rgb_matrix_config.hsv;
     hsv.h = 255;
     hsv.s = 100;
-    hsv.v = 71;
+    hsv.v = 100;
     for (uint8_t j = start; j < count; j++) {
       int16_t dx = g_led_config.point[i].x - g_last_hit_tracker.x[j];
       int16_t dy = g_led_config.point[i].y - g_last_hit_tracker.y[j];
