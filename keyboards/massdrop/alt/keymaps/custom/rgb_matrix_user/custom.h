@@ -4,8 +4,8 @@ RGB_MATRIX_EFFECT(custom)
 #ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 
 static HSV math(HSV hsv, uint16_t offset) {
-    if (offset <= 50) {
-        hsv.h = scale8(255 + offset, hsv.h);
+    if (hsv.h + offset < hsv.h + 50 ) {
+        hsv.h = hsv.h + offset;
     }
     return hsv;
 }
