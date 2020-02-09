@@ -19,27 +19,27 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         break;
       }
     }
+    HSV hsv2 = rgb_matrix_config.hsv;
+    hsv2.h += 50;
+    int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
+    int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
+    uint8_t dist = sqrt16(dx * dx + dy * dy);
+   
+    hsv2.h = hsv2.h - (dist / 2);
+    if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
+        hsv2.h = hsv2.h - 1;
+    }
+    else if (hsv2.h < rgb_matrix_config.hsv.h) {
+        hsv2.h = hsv2.h + 1;
+    }
+
     if (tick != max_tick) {
         uint16_t  offset = scale16by8(tick, rgb_matrix_config.speed);
-        HSV hsv2 = rgb_matrix_config.hsv;
         hsv2.s = 0;
         RGB rgb = hsv_to_rgb(effect_func(hsv2, offset));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
     else {
-        HSV hsv2 = rgb_matrix_config.hsv;
-        hsv2.h += 50;
-        int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
-        int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
-        uint8_t dist = sqrt16(dx * dx + dy * dy);
-       
-        hsv2.h = hsv2.h - (dist / 2);
-        if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
-            hsv2.h = hsv2.h - 1;
-        }
-        else if (hsv2.h < rgb_matrix_config.hsv.h) {
-            hsv2.h = hsv2.h + 1;
-        }
         RGB rgb = hsv_to_rgb(effect_func(hsv2, 0));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
