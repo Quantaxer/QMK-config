@@ -4,7 +4,7 @@ RGB_MATRIX_EFFECT(custom)
 #ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
 
 static HSV math(HSV hsv, uint16_t offset) {
-    hsv.s = hsv.s + (offset / 1.5);
+    hsv.s = hsv.s + offset;
     return hsv;
 }
 
