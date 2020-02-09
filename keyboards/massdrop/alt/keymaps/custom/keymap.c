@@ -41,15 +41,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-    RGB_MATRIX_USE_LIMITS(led_min, led_max);
-    for(int i=0; i<=led_max; i++) {
-        if (i < led_max-18 || i > led_max-6) {
-          rgb_matrix_set_color(i, 0, 127, 182);
-        }
-        else {
-          rgb_matrix_set_color(i, 0, 0, 0);
-        }
-    }
 };
 
 // Runs constantly in the background, in a loop.
