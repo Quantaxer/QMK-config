@@ -10,6 +10,7 @@ enum alt_keycodes {
 };
 
 #define TG_NKRO MAGIC_TOGGLE_NKRO //Toggle 6KRO / NKRO mode
+int16_t timerboi;
 
 keymap_config_t keymap_config;
 
@@ -41,7 +42,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-    timer_init();
 };
 
 // Runs constantly in the background, in a loop.

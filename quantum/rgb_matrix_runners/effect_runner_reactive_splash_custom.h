@@ -6,11 +6,10 @@ typedef HSV (*reactive_splash_f)(HSV hsv, int16_t dx, int16_t dy, uint8_t dist, 
 
 bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_func) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
-    static int16_t timer;
-    timer = timer_read();
 
   uint16_t max_tick = 65535 / rgb_matrix_config.speed;
-  int16_t time = timer_elapsed(timer) / 2;
+
+  uint16_t time = scale16by8(g_rgb_counters.tick, rgb_matrix_config.speed / 2);
   for (uint8_t i = led_min; i < led_max; i++) {
     RGB_MATRIX_TEST_LED_FLAGS();
     uint16_t tick = max_tick;
@@ -22,14 +21,12 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
       }
     }
     HSV hsv2 = rgb_matrix_config.hsv;
-    /*hsv2.h += 50;
     int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
     int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
     uint8_t dist = sqrt16(dx * dx + dy * dy);
    
-    hsv2.h = hsv2.h - (dist / 2);*/
     
-    hsv2.h = ceil((25 * sin(time / 200)) + (rgb_matrix_config.hsv.h + 25));
+    hsv2.h = scale8(ceil((25 * sin((time / 200)) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25)), hsv2.h);
 
     if (tick != max_tick) {
         uint16_t  offset = scale16by8(tick, rgb_matrix_config.speed);
