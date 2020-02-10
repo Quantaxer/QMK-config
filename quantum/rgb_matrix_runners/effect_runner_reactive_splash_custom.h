@@ -3,7 +3,7 @@
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 
 typedef HSV (*reactive_splash_f)(HSV hsv, int16_t dx, int16_t dy, uint8_t dist, uint16_t tick);
-int16_t count;
+int16_t count = 0;
 
 bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_func) {
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
@@ -27,7 +27,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     uint8_t dist = sqrt16(dx * dx + dy * dy);
    
     
-    hsv2.h = scale8(ceil((25 * sin(count) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25)), hsv2.h);
+    hsv2.h = ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
     if (tick != max_tick) {
         uint16_t  offset = scale16by8(tick, rgb_matrix_config.speed);
