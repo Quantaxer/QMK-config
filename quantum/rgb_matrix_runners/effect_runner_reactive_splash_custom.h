@@ -27,7 +27,8 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     //hsv2.h = globalCounter;
     
     //hsv2.h = abs8(25 * sin8(globalCounter / 100000)) + rgb_matrix_config.hsv.h;
-    hsv2.h = scale8(abs8(sin8(globalCounter) + rgb_matrix_config.hsv.h) * 4, hsv2.h);
+    float newCount = globalCounter * 180/3.14;
+    hsv2.h = abs(25 * sin(newCount / 100000)) + 200;
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
     if (tick != max_tick) {
@@ -41,7 +42,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
   }
-  globalCounter = globalCounter + 0.01;
+  globalCounter++;
   return led_max < DRIVER_LED_TOTAL;
 }
 
