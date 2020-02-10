@@ -10,7 +10,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
 
   uint16_t max_tick = 65535 / rgb_matrix_config.speed;
 
-  uint16_t time = scale16by8(g_rgb_counters.tick, rgb_matrix_config.speed / 8);
+  //uint16_t time = scale16by8(g_rgb_counters.tick, rgb_matrix_config.speed / 8);
   for (uint8_t i = led_min; i < led_max; i++) {
     RGB_MATRIX_TEST_LED_FLAGS();
     uint16_t tick = max_tick;
@@ -22,12 +22,11 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
       }
     }
     HSV hsv2 = rgb_matrix_config.hsv;
-    int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
-    int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
-    uint8_t dist = sqrt16(dx * dx + dy * dy);
+    //int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
+    //int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
+    //uint8_t dist = sqrt16(dx * dx + dy * dy);
    
-    
-    hsv2.h = scale8(200 + abs8(sin8(time + dist / 2)), hsv2.h);
+    //hsv2.h = scale8(200 + abs8(sin8(time + dist / 2)), hsv2.h);
     //hsv2.h = scale8(abs8(25 * sin8(time + dist / 2) + rgb_matrix_config.hsv.h), hsv2.h);
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
