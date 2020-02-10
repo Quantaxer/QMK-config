@@ -26,12 +26,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     uint8_t dist = sqrt16(dx * dx + dy * dy);
    
     hsv2.h = hsv2.h - (dist / 2);
-    if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
-        hsv2.h = hsv2.h - time;
-    }
-    else if (hsv2.h < rgb_matrix_config.hsv.h) {
-        hsv2.h = hsv2.h + time;
-    }
+    hsv2.h = ((25 * sin(time / 10)) + (hsv2.h / 2));
 
     if (tick != max_tick) {
         uint16_t  offset = scale16by8(tick, rgb_matrix_config.speed);
