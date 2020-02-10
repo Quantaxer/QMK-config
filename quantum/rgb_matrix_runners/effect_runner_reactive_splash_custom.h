@@ -8,7 +8,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
   RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
   uint16_t max_tick = 65535 / rgb_matrix_config.speed;
-  //uint8_t time = scale16by8(g_rgb_counters.tick, rgb_matrix_config.speed / 2);
+  uint8_t time = scale16by8(g_rgb_counters.tick, rgb_matrix_config.speed / 2);
   for (uint8_t i = led_min; i < led_max; i++) {
     RGB_MATRIX_TEST_LED_FLAGS();
     uint16_t tick = max_tick;
@@ -27,10 +27,10 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
    
     hsv2.h = hsv2.h - (dist / 2);
     if (hsv2.h > rgb_matrix_config.hsv.h + 50) {
-        hsv2.h = hsv2.h - 1;
+        hsv2.h = hsv2.h - time;
     }
     else if (hsv2.h < rgb_matrix_config.hsv.h) {
-        hsv2.h = hsv2.h + 1;
+        hsv2.h = hsv2.h + time;
     }
 
     if (tick != max_tick) {
