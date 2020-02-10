@@ -166,6 +166,7 @@ extern rgb_config_t rgb_matrix_config;
 extern bool g_suspend_state;
 extern rgb_counters_t g_rgb_counters;
 extern led_config_t g_led_config;
+extern rgb_counters_t globalCounter;
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 extern last_hit_t g_last_hit_tracker;
 #endif
