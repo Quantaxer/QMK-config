@@ -28,7 +28,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     
     //hsv2.h = abs8(25 * sin8(globalCounter / 100000)) + rgb_matrix_config.hsv.h;
     float newCount = globalCounter * 180/3.14;
-    hsv2.h = abs(20 * sin(newCount / 30000 * rgb_matrix_config.speed) + (dist / 2)) + rgb_matrix_config.hsv.h;
+    hsv2.h = abs(20 * sin(newCount / 50000) + (dist / 3)) + rgb_matrix_config.hsv.h;
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
     if (tick != max_tick) {
