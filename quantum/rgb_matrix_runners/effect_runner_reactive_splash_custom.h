@@ -24,9 +24,9 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     //int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
     //int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
     //uint8_t dist = sqrt16(dx * dx + dy * dy);
-    hsv2.h = globalCounter.tick;
+    hsv2.h = globalCounter;
     
-    //hsv2.h = abs8(25 * sin8(time + dist / 2));
+    //hsv2.h = abs8(25 * sin8(globalCounter + dist / 2));
     //hsv2.h = scale8(abs8(25 * sin8(time + dist / 2) + rgb_matrix_config.hsv.h), hsv2.h);
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
@@ -41,7 +41,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
   }
-  globalCounter.tick++;
+  globalCounter = globalCounter + 1;
   return led_max < DRIVER_LED_TOTAL;
 }
 

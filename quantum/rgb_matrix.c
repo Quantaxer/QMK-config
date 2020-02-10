@@ -102,7 +102,7 @@ bool g_suspend_state = false;
 rgb_config_t rgb_matrix_config;
 
 rgb_counters_t g_rgb_counters;
-rgb_counters_t globalCounter;
+float globalCounter = 0;
 static uint32_t rgb_counters_buffer;
 
 #ifdef RGB_MATRIX_FRAMEBUFFER_EFFECTS
@@ -291,7 +291,7 @@ static void rgb_task_start(void) {
 
   // update double buffers
   g_rgb_counters.tick = rgb_counters_buffer;
-    globalCounter.tick = 0;
+
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
   g_last_hit_tracker = last_hit_buffer;
 #endif // RGB_MATRIX_KEYREACTIVE_ENABLED
