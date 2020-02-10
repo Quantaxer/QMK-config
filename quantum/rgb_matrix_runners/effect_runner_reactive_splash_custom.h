@@ -26,7 +26,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     //uint8_t dist = sqrt16(dx * dx + dy * dy);
     //hsv2.h = globalCounter;
     
-    hsv2.h = abs8(25 * sin8(globalCounter / 200) + rgb_matrix_config.hsv.h);
+    hsv2.h = abs8(25 * sin8(globalCounter / 100000)) + rgb_matrix_config.hsv.h;
     //hsv2.h = scale8(abs8(25 * sin8(time + dist / 2) + rgb_matrix_config.hsv.h), hsv2.h);
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
