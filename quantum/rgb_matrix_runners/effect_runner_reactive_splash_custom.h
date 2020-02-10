@@ -41,7 +41,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
   }
-  globalCounter = globalCounter + 1;
+  globalCounter = globalCounter + 0.01;
   return led_max < DRIVER_LED_TOTAL;
 }
 
