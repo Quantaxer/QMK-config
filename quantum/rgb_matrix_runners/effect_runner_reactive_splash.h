@@ -11,6 +11,9 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
   for (uint8_t i = led_min; i < led_max; i++) {
     RGB_MATRIX_TEST_LED_FLAGS();
     HSV hsv = rgb_matrix_config.hsv;
+    hsv.h = 240;
+    hsv.s = 100;
+    hsv.v = 100;
     for (uint8_t j = start; j < count; j++) {
       int16_t dx = g_led_config.point[i].x - g_last_hit_tracker.x[j];
       int16_t dy = g_led_config.point[i].y - g_last_hit_tracker.y[j];
@@ -23,6 +26,7 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
     rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
   }
   return led_max < DRIVER_LED_TOTAL;
+ 
 }
 
 #endif // RGB_MATRIX_KEYREACTIVE_ENABLED
