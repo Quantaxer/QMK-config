@@ -21,6 +21,7 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
       }
     }
     HSV hsv2 = rgb_matrix_config.hsv;
+    hsv2.h = 240;
     int16_t dx = g_led_config.point[i].x - k_rgb_matrix_center.x;
     int16_t dy = g_led_config.point[i].y - k_rgb_matrix_center.y;
     uint8_t dist = sqrt16(dx * dx + dy * dy);
@@ -28,7 +29,10 @@ bool effect_runner_reactive_custom(effect_params_t* params, reactive_f effect_fu
     
     //hsv2.h = abs8(25 * sin8(globalCounter / 100000)) + rgb_matrix_config.hsv.h;
     float newCount = globalCounter * 180/3.14;
-    hsv2.h = (dist / 5) + abs(30 * sin(newCount / 20000)) - rgb_matrix_config.hsv.h;
+    if (newCount > 1000000) {
+        newCount = 0.0;
+    }
+    hsv2.h = (dist / 5) + abs(30 * sin(newCount / 20000) - 210);
     //ceil((25 * sin(count / 1000) + (dist / 2)) + (rgb_matrix_config.hsv.h + 25));
 
     if (tick != max_tick) {
